@@ -1,0 +1,297 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+  --ink: #1B2430;
+  --ink-raised: #232E3D;
+  --ink-raised-2: #2A3548;
+  --hairline: rgba(236, 234, 226, 0.10);
+  --hairline-strong: rgba(236, 234, 226, 0.18);
+  --paper: #ECEAE2;
+  --muted: #8993A6;
+  --amber: #E3A857;
+  --amber-hover: #F0B96B;
+  --danger: #C97064;
+
+  --font-display: 'Source Serif 4', Georgia, serif;
+  --font-ui: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  width: 380px;
+  max-height: 580px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-ui);
+  font-size: 13px;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  max-height: 580px;
+}
+
+/* Header */
+.app__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px 12px;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.app__brand {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+}
+
+.app__mark {
+  font-family: var(--font-display);
+  color: var(--amber);
+  font-size: 18px;
+  line-height: 1;
+}
+
+.app__brand h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 18px;
+  margin: 0;
+  letter-spacing: 0.2px;
+}
+
+.btn-save {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--ink);
+  background: var(--amber);
+  border: none;
+  border-radius: 5px;
+  padding: 7px 11px;
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+.btn-save:hover { background: var(--amber-hover); }
+.btn-save:active { transform: translateY(1px); }
+.btn-save.is-saved { background: var(--paper); color: var(--ink); }
+
+/* Search */
+.search-row {
+  padding: 12px 16px 8px;
+}
+.search-row input {
+  width: 100%;
+  background: var(--ink-raised);
+  border: 1px solid var(--hairline);
+  border-radius: 6px;
+  color: var(--paper);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  padding: 8px 10px;
+  outline: none;
+}
+.search-row input:focus {
+  border-color: var(--amber);
+}
+.search-row input::placeholder { color: var(--muted); }
+
+/* Tag rail */
+.tag-rail {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 0 16px 10px;
+  scrollbar-width: none;
+}
+.tag-rail::-webkit-scrollbar { display: none; }
+
+.tag-pill {
+  flex: none;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  background: var(--ink-raised);
+  border: 1px solid var(--hairline);
+  border-radius: 100px;
+  padding: 4px 10px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.tag-pill:hover { color: var(--paper); border-color: var(--hairline-strong); }
+.tag-pill.is-active {
+  color: var(--ink);
+  background: var(--amber);
+  border-color: var(--amber);
+}
+
+/* Drawer label */
+.drawer-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 16px 6px;
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--hairline);
+}
+
+/* Card list */
+.card-list {
+  overflow-y: auto;
+  padding: 6px 10px 12px;
+  flex: 1;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: var(--ink-raised);
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+  padding: 10px 10px 10px 14px;
+  margin: 6px 0;
+  overflow: hidden;
+}
+
+.card__tab {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+}
+
+.card__favicon {
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  border-radius: 3px;
+  flex: none;
+  background: var(--ink-raised-2);
+}
+
+.card__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.card__title {
+  display: block;
+  color: var(--paper);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 13px;
+  text-decoration: none;
+  line-height: 1.35;
+  cursor: pointer;
+}
+.card__title:hover { color: var(--amber); }
+
+.card__url {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--muted);
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 7px;
+}
+
+.tag-chip {
+  font-family: var(--font-ui);
+  font-size: 10.5px;
+  font-weight: 500;
+  color: var(--muted);
+  background: var(--ink-raised-2);
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  padding: 2px 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.tag-chip:hover { color: var(--paper); }
+.tag-chip__remove { color: var(--danger); font-weight: 700; }
+
+.tag-add {
+  font-family: var(--font-ui);
+  font-size: 10.5px;
+  color: var(--muted);
+  background: transparent;
+  border: 1px dashed var(--hairline-strong);
+  border-radius: 4px;
+  padding: 2px 6px;
+  cursor: pointer;
+}
+.tag-add:hover { color: var(--amber); border-color: var(--amber); }
+
+.tag-input {
+  font-family: var(--font-ui);
+  font-size: 10.5px;
+  color: var(--paper);
+  background: var(--ink);
+  border: 1px solid var(--amber);
+  border-radius: 4px;
+  padding: 2px 6px;
+  outline: none;
+  width: 90px;
+}
+
+.card__delete {
+  flex: none;
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+.card__delete:hover { color: var(--danger); background: var(--ink-raised-2); }
+
+/* Empty state */
+.empty-state {
+  padding: 40px 24px;
+  text-align: center;
+}
+.empty-state__title {
+  font-family: var(--font-display);
+  font-size: 15px;
+  color: var(--paper);
+  margin: 0 0 4px;
+}
+.empty-state__hint {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* Scrollbar */
+.card-list::-webkit-scrollbar { width: 6px; }
+.card-list::-webkit-scrollbar-thumb {
+  background: var(--ink-raised-2);
+  border-radius: 3px;
+}

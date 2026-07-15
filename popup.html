@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Catalog</title>
+<link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app__header">
+      <div class="app__brand">
+        <span class="app__mark">§</span>
+        <h1>Catalog</h1>
+      </div>
+      <button id="saveTab" class="btn-save" title="Save this tab (Ctrl+Shift+S)">
+        + Save tab
+      </button>
+    </header>
+
+    <div class="search-row">
+      <input id="search" type="text" placeholder="Search title, url, tag…" autocomplete="off" />
+    </div>
+
+    <div id="tagRail" class="tag-rail" hidden></div>
+
+    <div class="drawer-label">
+      <span>Filed links</span>
+      <span id="count">0</span>
+    </div>
+
+    <main id="list" class="card-list"></main>
+
+    <div id="empty" class="empty-state" hidden>
+      <p class="empty-state__title">Nothing filed yet.</p>
+      <p class="empty-state__hint">Save the tab you're on, or press Ctrl+Shift+S.</p>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
