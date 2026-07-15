@@ -23,6 +23,7 @@ async function addLink({ url, title, favIconUrl }) {
     title: title || hostAndPath(url),
     favIconUrl: favIconUrl || '',
     tags: [],
+    note: '',
     createdAt: Date.now(),
   });
   await chrome.storage.local.set({ links });

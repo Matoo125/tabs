@@ -130,6 +130,41 @@ function renderSidebar() {
   });
 }
 
+function enterNoteEditMode(container, link) {
+  container.innerHTML = '';
+  
+  const textarea = document.createElement('textarea');
+  textarea.className = 'card__note-input';
+  textarea.value = link.note || '';
+  textarea.placeholder = 'Add a custom note...';
+  textarea.rows = 2;
+  
+  container.appendChild(textarea);
+  textarea.focus();
+  
+  let committed = false;
+  const commit = async () => {
+    if (committed) return;
+    committed = true;
+    link.note = textarea.value.trim();
+    await saveLinks(links);
+    render();
+  };
+  
+  textarea.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      commit();
+    }
+    if (e.key === 'Escape') {
+      committed = true;
+      render();
+    }
+  });
+  
+  textarea.addEventListener('blur', commit);
+}
+
 function cardTemplate(link) {
   const card = document.createElement('article');
   card.className = 'card';
@@ -187,6 +222,22 @@ function cardTemplate(link) {
   });
   meta.appendChild(dateSpan);
   card.appendChild(meta);
+
+  // Note block
+  const noteContainer = document.createElement('div');
+  noteContainer.className = 'card__note-container';
+  const currentNote = link.note || '';
+  if (currentNote) {
+    const noteText = document.createElement('p');
+    noteText.className = 'card__note-text';
+    noteText.textContent = currentNote;
+    noteText.title = 'Click to edit note';
+    noteText.addEventListener('click', () => {
+      enterNoteEditMode(noteContainer, link);
+    });
+    noteContainer.appendChild(noteText);
+  }
+  card.appendChild(noteContainer);
 
   // Tag list
   const tagsRow = document.createElement('div');
@@ -250,6 +301,16 @@ function cardTemplate(link) {
     input.addEventListener('blur', commit);
   });
   tagsRow.appendChild(addBtn);
+
+  if (!link.note) {
+    const addNoteBtn = document.createElement('button');
+    addNoteBtn.className = 'note-add';
+    addNoteBtn.textContent = '+ note';
+    addNoteBtn.addEventListener('click', () => {
+      enterNoteEditMode(noteContainer, link);
+    });
+    tagsRow.appendChild(addNoteBtn);
+  }
 
   card.appendChild(tagsRow);
 
@@ -388,6 +449,7 @@ fileInput.addEventListener('change', (e) => {
             title: item.title || hostAndPath(item.url),
             favIconUrl: item.favIconUrl || '',
             tags: Array.isArray(item.tags) ? item.tags : [],
+            note: typeof item.note === 'string' ? item.note : '',
             createdAt: typeof item.createdAt === 'number' ? item.createdAt : Date.now()
           });
           addedCount++;

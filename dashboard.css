@@ -490,6 +490,59 @@ body {
   width: 90px;
 }
 
+.card__note-container {
+  margin-top: 4px;
+  margin-bottom: 12px;
+}
+
+.card__note-text {
+  margin: 0;
+  padding: 8px 12px;
+  background: rgba(236, 234, 226, 0.02);
+  border-left: 3px solid var(--amber);
+  color: var(--paper);
+  font-family: var(--font-ui);
+  font-size: 12.5px;
+  line-height: 1.5;
+  border-radius: 0 6px 6px 0;
+  cursor: pointer;
+  white-space: pre-wrap;
+  transition: var(--transition-smooth);
+}
+.card__note-text:hover {
+  background: rgba(236, 234, 226, 0.05);
+}
+
+.card__note-input {
+  width: 100%;
+  background: var(--ink);
+  border: 1px solid var(--amber);
+  border-radius: 6px;
+  color: var(--paper);
+  font-family: var(--font-ui);
+  font-size: 12.5px;
+  padding: 8px 12px;
+  outline: none;
+  resize: vertical;
+  min-height: 52px;
+}
+
+.note-add {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  color: var(--muted);
+  background: transparent;
+  border: 1px dashed var(--hairline-strong);
+  border-radius: 4px;
+  padding: 3px 8px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+.note-add:hover {
+  color: var(--amber);
+  border-color: var(--amber);
+}
+
 /* Card Actions Footer */
 .card__actions {
   display: flex;
