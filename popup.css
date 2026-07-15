@@ -65,6 +65,32 @@ body {
   letter-spacing: 0.2px;
 }
 
+.app__header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-dashboard {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  background: transparent;
+  border: 1px solid var(--hairline);
+  border-radius: 5px;
+  padding: 6px 8px;
+  cursor: pointer;
+  color: var(--muted);
+  transition: all 0.12s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-dashboard:hover {
+  color: var(--paper);
+  border-color: var(--hairline-strong);
+  background: var(--ink-raised);
+}
+
 .btn-save {
   font-family: var(--font-ui);
   font-weight: 600;

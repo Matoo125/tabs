@@ -49,6 +49,7 @@ const countEl = document.getElementById('count');
 const tagRailEl = document.getElementById('tagRail');
 const searchEl = document.getElementById('search');
 const saveBtn = document.getElementById('saveTab');
+const dashboardBtn = document.getElementById('openDashboard');
 
 // ---- Rendering ----------------------------------------------------------
 
@@ -257,6 +258,9 @@ searchEl.addEventListener('input', (e) => {
 });
 
 saveBtn.addEventListener('click', saveCurrentTab);
+dashboardBtn.addEventListener('click', () => {
+  chrome.tabs.create({ url: 'dashboard.html' });
+});
 
 chrome.storage.onChanged.addListener((changes, area) => {
   if (area === 'local' && changes.links) {

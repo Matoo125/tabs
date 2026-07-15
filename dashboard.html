@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catalog — Manage Tabs</title>
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+  <div class="dashboard">
+    <!-- Sidebar Navigation -->
+    <aside class="dashboard__sidebar">
+      <div class="sidebar__brand">
+        <span class="sidebar__mark">§</span>
+        <h1 class="sidebar__title">Catalog</h1>
+      </div>
+      
+      <div class="sidebar__stats">
+        <div class="stat-box">
+          <span class="stat-box__val" id="statsTotal">0</span>
+          <span class="stat-box__lbl">Saved</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-box__val" id="statsFiltered">0</span>
+          <span class="stat-box__lbl">Visible</span>
+        </div>
+      </div>
+
+      <nav class="sidebar__nav">
+        <h2 class="sidebar__section-title">Tags</h2>
+        <div id="tagList" class="tag-list">
+          <!-- Dynamic tag buttons go here -->
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="dashboard__main">
+      <header class="dashboard__header">
+        <div class="search-box">
+          <span class="search-box__icon">🔍</span>
+          <input id="dashboardSearch" type="text" placeholder="Search title, URL, tags..." autocomplete="off" />
+        </div>
+        
+        <div class="header-actions">
+          <button id="importBtn" class="btn btn--secondary" title="Restore links from a backup file">Import Backup</button>
+          <button id="exportBtn" class="btn btn--secondary" title="Download links as a backup file">Export Backup</button>
+          <button id="clearAllBtn" class="btn btn--danger" title="Delete all links permanently">Clear All</button>
+          <input id="importFileInput" type="file" accept=".json" style="display: none;" />
+        </div>
+      </header>
+
+      <section class="dashboard__filter-bar">
+        <span id="filterStatus" class="filter-status">Showing all links</span>
+      </section>
+
+      <section class="dashboard__content">
+        <!-- Cards Grid -->
+        <div id="linkGrid" class="link-grid">
+          <!-- Dynamic cards go here -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="empty-state" hidden>
+          <div class="empty-state__icon">📂</div>
+          <h3 class="empty-state__title">No links found</h3>
+          <p class="empty-state__description">Try searching for something else or add new bookmarks from your tabs.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
